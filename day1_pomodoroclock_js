@@ -1,0 +1,123 @@
+$(document).ready(function() {
+
+  var buzzer = $("#buzzer")[0];
+
+  var count = parseInt($("#num").html());
+  //console.log(count);
+  var bcount = parseInt($("#breaknum").html());
+
+  $("#reset").hide();
+
+  $('#reset').click(function() {
+    count = 25;
+    bcount = 25;
+
+    $('#num').html(count);
+    $('#breaknum').html(bcount);
+    $('#timetype').hide();
+    $('#start,#subclock,#addclock,#subbreak,#addbreak,#num,#breaknum,#title1,#title2').show();
+
+    $('#reset').hide();
+  });
+
+  $('#start').click(function() {
+    var counter = setInterval(timer, 1000);
+
+    //     count=count*60;
+    // bcount = bcount*60;
+    function timer() {
+      $("#start, #subclock, #addclock, #subbreak, #addbreak, #title1,#title2,#breaknum").hide();
+      count = count - 1;
+
+      if (count % 2 == 0) {
+        $("#defg").hide();
+        $("#tyio").show();
+
+      } else {
+        $("#tyio").hide();
+        $("#defg").show();
+      }
+      $('#timetype').show();
+      $('#timetype').html("<h1>Session Starts Dude!</h1> <br>");
+      if (count === 0) {
+        $('#timetype').html("<h1>Session Ends buddy !</h1> <br>");
+        clearInterval(counter);
+        $('#num').html("00:00");
+        buzzer.play();
+        var sbreak = setInterval(btimer, 1000);
+        //      bcount = bcount * 60;
+        $('#num').hide();
+      }
+      if (count % 60 >= 10) {
+        $('#num').html(Math.floor(count / 60) + ":" + count % 60);
+
+      } else {
+        $('#num').html(Math.floor(count / 60) + ":0" + count % 60);
+      }
+
+      //   $('#num').html(count);
+
+      function btimer() {
+        $('#timetype').html('<h1>Take a break buddy!</h1> <br>');
+        $('#breaknum').show();
+
+        $('#timetype').show();
+        bcount = bcount - 1;
+
+        if (bcount === 0) {
+          clearInterval(sbreak);
+          buzzer.play();
+          $('#timetype').html("Wanna Another Ride !");
+          $('#reset').show();
+          $('#breaknum').hide();
+
+        }
+        if (bcount % 60 >= 10) {
+          $('#breaknum').html(Math.floor(bcount / 60) + ":" + bcount % 60);
+
+        } else {
+          $('#breaknum').html(Math.floor(bcount / 60) + ":0" + bcount % 60);
+        }
+
+        //   $('#breaknum').html(bcount);
+      }
+    }
+
+  });
+
+  $('#subclock').click(function() {
+    if (count > 5) {
+      count = count - 5;
+      $("#num").html(count);
+      console.log(count);
+    }
+
+  });
+
+  $('#addclock').click(function() {
+
+    count = count + 5;
+    $("#num").html(count);
+    console.log(count);
+  });
+
+  $('#subbreak').click(function() {
+    if (bcount > 5) {
+      bcount = bcount - 5;
+      $("#breaknum").html(bcount);
+      console.log(bcount);
+    }
+
+  });
+
+  $('#addbreak').click(function() {
+
+    bcount = bcount + 5;
+    $("#breaknum").html(bcount);
+    console.log(bcount);
+  });
+
+});
+
+//updations further
+//1.change back ground image for seconds 2.some animating object for calculation of minute or entire duration use maths for this 3.if possible use clock 4.make designs for digits representation 5.change the session
