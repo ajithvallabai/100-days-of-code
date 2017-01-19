@@ -1,0 +1,37 @@
+body {
+  background-image: url("https://www.planwallpaper.com/static/images/cool_wooden_wall_1920x1200_cool_twitter_backgrounds.jpg");
+  background-size: 100%;
+  background-attachment: fixed;
+  font-family: "Montserrat";
+  
+}
+
+#timetype {
+  color: yellow;
+} 
+
+h2 {
+  display: inline;
+}
+
+.tim {
+  background-color: black;
+  color: #1CD06E;
+  font-size: 60px;
+  padding: 10px;
+  border: 3px solid red;
+  margin: 20px;
+}
+
+#timetype {
+  margin: 20px;
+  padding: 10px;
+}
+
+.btn-primary {
+  background-color: red;
+}
+
+#start {
+  font-size: 60px;
+}
